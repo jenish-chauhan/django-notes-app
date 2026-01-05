@@ -5,8 +5,8 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "django-notes-app"
-        CONTAINER_NAME = "django-app"
+        IMAGE_NAME = "django-notes-application"
+        CONTAINER_NAME = "django-container"
     }
 
     stages {
