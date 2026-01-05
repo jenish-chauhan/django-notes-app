@@ -1,4 +1,4 @@
-@Library("Shared") _
+@Library('Shared') _
 pipeline {
     agent {
         label 'node-1'
@@ -13,24 +13,23 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                script{
-                     gitclone('https://github.com/jenish-chauhan/django-notes-app.git','main')
+                script {
+                    gitclone(
+                        'https://github.com/jenish-chauhan/django-notes-app.git',
+                        'main'
+                    )
                 }
-               
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                  script{
-                     buildDockerImage('$IMAGE_NAME')
+                script {
+                    buildDockerImage('$IMAGE_NAME')
                 }
             }
         }
-
-       
-
-        stage('Run Container') {
+          stage('Run Container') {
              steps {
                  script{
                     runContainer(
@@ -41,13 +40,14 @@ pipeline {
                   }
                 }
           }
-        
-        stage('push to the docker hub'){
+          stage('push to the docker hub'){
             steps{
                script{
                    pushDockerHub('$IMAGE_NAME','dockerHubCred')
                }
             }
         }
+
+        
     }
 }
